@@ -22,6 +22,22 @@ namespace MidtermExam.Prob01
         /// </remarks>
         public int AS01_CountVowels(Queue<string> alphabets)
         {
+            int[]firstLast(int[] a ,int target )
+            {
+                int first = -1, Last = -1;
+                for (int i = 0; i < a.Length; i++)
+                {
+                    if (a[i] == target)
+                    {
+                        if (first == -1) first = i;
+                        Last = i + 1;
+                    }
+                }
+                        if (first == -1) return new int[] { -1 };
+                        return new int[] { first, Last };
+                    
+
+            }
             // TODO: เขียนคำตอบแทนคำสั่ง throw exception ด้านล่าง
             throw new NotImplementedException();
         }
