@@ -17,6 +17,22 @@ namespace MidtermExam.Prob04
         /// </remarks>
         public int AS04_SequentialSearch(int[] values, int target)
         {
+            int[] firstLast(int[] a, int target)
+            {
+                int first = -1, Last = -1;
+                for (int i = 0; i < a.Length; i++)
+                {
+                    if (a[i] == target)
+                    {
+                        if (first == -1) first = i;
+                        Last = i + 1;
+                    }
+                }
+                if (first == -1) return new int[] { -1 };
+                return new int[] { first, Last };
+
+
+            }
             // TODO: เขียนคำตอบแทนคำสั่ง throw ด้านล่าง
             throw new NotImplementedException();
         }
@@ -37,14 +53,30 @@ namespace MidtermExam.Prob04
         /// </remarks>
         public int AS05_BinarySearch(int[] sortedValues, int target)
         {
-            // TODO: เขียนคำตอบแทนคำสั่ง throw ด้านล่าง
-            // 1. จัดการ input ที่เป็น null/ว่าง และกำหนดขอบเขต index ของช่วงค้นหา
-            // 2. เลือก index ตรงกลางของช่วง แล้วเปรียบเทียบค่าตรงกลางกับ target
-            // 3. ถ้ายังไม่ตรง ให้เลือกค้นหาต่อเฉพาะครึ่งซ้ายหรือครึ่งขวาตามลำดับค่าที่เรียงไว้
-            //    ต้องตัดตำแหน่งที่ตรวจแล้วออก เพื่อให้ช่วงเล็กลงและไม่เกิดการวนซ้ำไม่จบ
-            // 4. ถ้าช่วงค้นหาหมดและยังไม่พบ ให้คืนค่าที่โจทย์กำหนดสำหรับกรณีไม่พบ
-            // ลองตรวจกรณีสมาชิกเดียว สองสมาชิก เป้าหมายอยู่หัว/ท้าย และเป้าหมายอยู่นอกช่วงค่า
-            throw new NotImplementedException();
+            if (sortedValues == null || sortedValues.Length == 0)
+            {
+                return -1;
+            }
+            int left = 0;
+            int right = sortedValues.Length - 1;
+            while (left <= right)
+            {
+                int mid = (left + right) / 2;
+                if (sortedValues[mid] == target)
+                {
+                    return mid;
+                }
+                else if (sortedValues[mid] < target)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+            return -1;
+
         }
     }
 }
